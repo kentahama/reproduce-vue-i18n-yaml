@@ -1,16 +1,29 @@
-# Vue 3 + TypeScript + Vite
+# Vite i18n yaml reproduction
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+```shellsession
+$ yarn
+$ yarn dev
+```
 
-## Recommended IDE Setup
+then opening `http://localhost:5173/` shows an error
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+```
+[plugin:unplugin-vue-i18n] Cannot read properties of undefined (reading 'message')
+/home/hamanaka/github/reproduce-vite-i18n-yaml/src/App.vue
+    at Object.newOptions.onError (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/lib/codegen.js:102:48)
+    at Object.newOptions.onError (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/lib/codegen.js:102:36)
+    at newOptions.onError (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/lib/codegen.js:102:36)
+    at emitError (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/node_modules/@intlify/message-compiler/dist/message-compiler.cjs:866:13)
+    at parseLinked (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/node_modules/@intlify/message-compiler/dist/message-compiler.cjs:966:13)
+    at parseMessage (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/node_modules/@intlify/message-compiler/dist/message-compiler.cjs:1057:36)
+    at parseResource (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/node_modules/@intlify/message-compiler/dist/message-compiler.cjs:1096:25)
+    at Object.parse (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/node_modules/@intlify/message-compiler/dist/message-compiler.cjs:1111:21)
+    at baseCompile (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/node_modules/@intlify/message-compiler/dist/message-compiler.cjs:1425:24)
+    at generateMessageFunction (/home/hamanaka/github/reproduce-vite-i18n-yaml/node_modules/@intlify/bundle-utils/lib/codegen.js:105:67
+Click outside or fix the code to dismiss.
+You can also disable this overlay by setting server.hmr.overlay to false in vite.config.js.
+```
 
-## Type Support For `.vue` Imports in TS
+# The problematic part
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
-
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
-
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+https://github.com/kentahama/reproduce-vue-i18n-yaml/blob/main/src/App.vue#L37-L41
