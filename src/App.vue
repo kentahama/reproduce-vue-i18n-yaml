@@ -1,7 +1,9 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 </script>
 
 <template>
@@ -14,6 +16,9 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <p>
+    {{ t("hello") }}
+  </p>
 </template>
 
 <style scoped>
@@ -29,3 +34,7 @@ import HelloWorld from './components/HelloWorld.vue'
   filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
+<i18n lang="yaml">
+ja:
+  hello: こんにちは
+</i18n>
