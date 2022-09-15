@@ -37,4 +37,5 @@ const { t } = useI18n();
 <i18n lang="yaml">
 ja:
   hello: こんにちは
+  this-is-ivalid: "@" # is this ivalid?
 </i18n>
